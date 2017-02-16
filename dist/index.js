@@ -49,7 +49,15 @@ var AsyncRoute = function (_Component) {
 	};
 
 	AsyncRoute.prototype.render = function render() {
-		return this.state.componentData ? preact.h(this.state.componentData, { url: this.props.url, matches: this.props.matches }) : null;
+
+		if (this.state.componentData) {
+			return preact.h(this.state.componentData, { url: this.props.url, matches: this.props.matches });
+		} else if (this.props.loading) {
+			var loadingComponent = this.props.loading();
+			return loadingComponent;
+		}
+
+		return null;
 	};
 
 	return AsyncRoute;

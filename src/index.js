@@ -27,9 +27,15 @@ class AsyncRoute extends Component {
 		}
 	}
 	render(){
-		return this.state.componentData ?
-			h(this.state.componentData, { url: this.props.url, matches: this.props.matches }) :
-			null;
+
+		if (this.state.componentData) {
+			return h(this.state.componentData, { url: this.props.url, matches: this.props.matches });
+		} else if (this.props.loading) {
+			const loadingComponent = this.props.loading();
+			return loadingComponent;
+		}
+
+		return null;
 	}
 }
 

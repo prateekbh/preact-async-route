@@ -47,4 +47,28 @@ describe('Async Route', () => {
 			expect(containerTag.innerHTML).equal('<h1>hi</h1>');
 		});
 	});
+
+	it('should render loading component while component is not resolved', () => {
+		let containerTag = document.createElement('div');
+		const startTime = Date.now();
+		const componentPromise = new Promise(resolve=>{
+			setTimeout(()=>{
+				resolve(SampleTag);
+			},800);
+		});
+
+		let getComponent = function() {
+			return componentPromise;
+		};
+
+		render(<AsyncRoute loading={() => <span>loading...</span>} component={getComponent} />, containerTag);
+
+		expect(containerTag.innerHTML).equal('<span>loading...</span>');
+
+		componentPromise.then(()=>{
+			const endTime = Date.now();
+			expect(endTime - startTime).to.be.greaterThan(800);
+			expect(containerTag.innerHTML).equal('<h1>hi</h1>');
+		});
+	});
 });
