@@ -1,0 +1,73 @@
+{
+  "name": "preact-async-route",
+  "version": "1.0.0",
+  "description": "Async route component for preact-router",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rimraf dist/",
+    "build": "npm-run-all clean transpile",
+    "transpile": "rollup -c rollup.config.js",
+    "test": "npm-run-all lint build test:karma",
+    "lint": "eslint {src,test}",
+    "test:karma": "karma start --single-run",
+    "test:watch": "karma start",
+    "prepublish": "npm-run-all build test",
+    "release": "npm run build && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prateekbh/preact-async-route.git"
+  },
+  "keywords": [
+    "preact",
+    "preact-router",
+    "router"
+  ],
+  "files": [
+    "src",
+    "dist"
+  ],
+  "author": "Prateek Bhatnagar<prateek89born@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/prateekbh/preact-async-route/issues"
+  },
+  "homepage": "https://github.com/prateekbh/preact-async-route#readme",
+  "devDependencies": {
+    "Promise": "^1.0.5",
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.9.1",
+    "babel-eslint": "^7.0.0",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-class-properties": "^6.9.1",
+    "babel-plugin-transform-es2015-classes": "^6.9.0",
+    "babel-plugin-transform-object-assign": "^6.0.0",
+    "babel-plugin-transform-react-jsx": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.0.0",
+    "eslint-plugin-react": "^6.10.0",
+    "karma": "^1.0.0",
+    "karma-chai-sinon": "^0.1.5",
+    "karma-mocha": "^1.0.1",
+    "karma-mocha-reporter": "^2.0.3",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^2.0.1",
+    "mocha": "^3.2.0",
+    "npm-run-all": "^3.0.0",
+    "rollup": "^0.41.4",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-minify": "^1.0.3",
+    "sinon": "^1.17.4",
+    "sinon-chai": "^2.8.0",
+    "uglify-js": "^2.6.1",
+    "webpack": "^2.2.1"
+  },
+  "peerdependencies": {
+    "preact": "*",
+    "preact-router": "*"
+  }
+}
