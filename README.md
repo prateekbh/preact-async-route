@@ -1,4 +1,6 @@
 # preact-async-route
+[![build](https://api.travis-ci.org/prateekbh/preact-async-route.svg?branch=master)](https://api.travis-ci.org/prateekbh/preact-async-route.svg?branch=master)
+
 Async route component for [preact-router](https://github.com/developit/preact-router)
 
 `npm i -D preact-async-route`
