@@ -7,7 +7,7 @@ class AsyncRoute extends Component {
 			componentData: null
 		};
 	}
-	componentDidMount(){
+	loadComponent(props){
 		const componentData = this.props.component(this.props.url, ({component}) => {
             // Named param for making callback future proof
 			if (component) {
@@ -23,6 +23,18 @@ class AsyncRoute extends Component {
 				this.setState({
 					componentData: component
 				});
+			});
+		}
+	}
+	componentDidMount(){
+		this.loadComponent(this.props);
+	}
+	componentWillReceiveProps(nextProps){
+		if (this.props.url && this.props.url !== nextProps.url) {
+			this.setState({
+				componentData: null
+			}, ()=>{
+				this.loadComponent(nextProps);
 			});
 		}
 	}
