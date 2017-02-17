@@ -4,7 +4,11 @@ import AsyncRoute from '../src/';
 import Home from './components/Home';
 
 function getProfile() {
-	return System.import('./components/Profile').then(module => module.default);
+	return new Promise(resolve=>{
+		setTimeout(()=>{
+			System.import('./components/Profile').then(module => {resolve(module.default);});
+		},5000);
+	});
 }
 
 function getTerms() {
@@ -14,7 +18,7 @@ function getTerms() {
 render(
 	<Router>
 		<Route path='/' component={Home}/>
-		<AsyncRoute path='/profile/:pid' component={getProfile}/>
+		<AsyncRoute path='/profile/:pid' component={getProfile} loading={()=><span>loading...</span>}/>
 		<AsyncRoute path='/terms' component={getTerms}/>
 	</Router>,
 	document.getElementById('app')

@@ -71,4 +71,8 @@ describe('Async Route', () => {
 			expect(containerTag.innerHTML).equal('<h1>hi</h1>');
 		});
 	});
+
+	it('should update on url change for same component', () => {
+
+	});
 });

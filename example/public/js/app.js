@@ -1663,8 +1663,12 @@ var _Home2 = _interopRequireDefault(_Home);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getProfile() {
-	return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 4)).then(function (module) {
-		return module.default;
+	return new Promise(function (resolve) {
+		setTimeout(function () {
+			__webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 4)).then(function (module) {
+				resolve(module.default);
+			});
+		}, 5000);
 	});
 }
 
@@ -1678,7 +1682,13 @@ function getTerms() {
 	_preactRouter.Router,
 	null,
 	(0, _preact.h)(_preactRouter.Route, { path: '/', component: _Home2.default }),
-	(0, _preact.h)(_src2.default, { path: '/profile/:pid', component: getProfile }),
+	(0, _preact.h)(_src2.default, { path: '/profile/:pid', component: getProfile, loading: function loading() {
+			return (0, _preact.h)(
+				'span',
+				null,
+				'loading...'
+			);
+		} }),
 	(0, _preact.h)(_src2.default, { path: '/terms', component: getTerms })
 ), document.getElementById('app'));
 
