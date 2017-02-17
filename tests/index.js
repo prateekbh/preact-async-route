@@ -1,4 +1,5 @@
 import { h, render, Component, options } from 'preact';
+import Router,{route} from 'preact-router';
 import AsyncRoute from 'src/index';
 import Promise from 'Promise';
 
@@ -8,6 +9,11 @@ describe('Async Route', () => {
 	class SampleTag extends Component {
 		render(){
 			return (<h1>hi</h1>);
+		}
+	}
+	class ParameterizedSampleTag extends Component {
+		render(){
+			return (<h1>hi - {this.props.matches.pid}</h1>);
 		}
 	}
 
@@ -73,6 +79,14 @@ describe('Async Route', () => {
 	});
 
 	it('should update on url change for same component', () => {
-
+		let containerTag = document.createElement('div');
+		let getComponent = function(url, cb) {
+			cb({component: ParameterizedSampleTag});
+		};
+		render(<Router><AsyncRoute path='/profile/:pid' component={getComponent} /></Router>, containerTag);
+		route('/profile/Prateek');
+		expect(containerTag.innerHTML).equal('<h1>hi - Prateek</h1>');
+		route('/profile/Jason');
+		expect(containerTag.innerHTML).equal('<h1>hi - Jason</h1>');
 	});
 });

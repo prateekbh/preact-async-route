@@ -7,7 +7,7 @@ function getProfile() {
 	return new Promise(resolve=>{
 		setTimeout(()=>{
 			System.import('./components/Profile').then(module => {resolve(module.default);});
-		},5000);
+		},2000);
 	});
 }
 

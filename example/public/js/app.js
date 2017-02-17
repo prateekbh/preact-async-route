@@ -721,7 +721,7 @@ var AsyncRoute = function (_Component) {
 
 	_createClass(AsyncRoute, [{
 		key: 'loadComponent',
-		value: function loadComponent(props) {
+		value: function loadComponent() {
 			var _this2 = this;
 
 			var componentData = this.props.component(this.props.url, function (_ref) {
@@ -747,7 +747,7 @@ var AsyncRoute = function (_Component) {
 	}, {
 		key: 'componentDidMount',
 		value: function componentDidMount() {
-			this.loadComponent(this.props);
+			this.loadComponent();
 		}
 	}, {
 		key: 'componentWillReceiveProps',
@@ -758,7 +758,7 @@ var AsyncRoute = function (_Component) {
 				this.setState({
 					componentData: null
 				}, function () {
-					_this3.loadComponent(nextProps);
+					_this3.loadComponent();
 				});
 			}
 		}
@@ -1668,7 +1668,7 @@ function getProfile() {
 			__webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 4)).then(function (module) {
 				resolve(module.default);
 			});
-		}, 5000);
+		}, 2000);
 	});
 }
 
