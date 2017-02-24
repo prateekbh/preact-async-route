@@ -106,4 +106,29 @@ describe('Async Route', () => {
 		route('/profile/Jason');
 		expect(containerTag.innerHTML).equal('<h1>hi - Jason</h1>');
 	});
+
+	it('should mount correct component in case of race conditions', (done) => {
+		let containerTag = document.createElement('div');
+		let getParameterizedComponent = function(url, cb) {
+			return new Promise(resolve=>{
+				setTimeout(()=>{
+					resolve(ParameterizedSampleTag);
+				},200);
+			});
+		};
+		let getComponent = function(url, cb) {
+			return new Promise(resolve=>{
+				setTimeout(()=>{
+					resolve(SampleTag);
+				},1);
+			});
+		};
+		render(<Router><AsyncRoute path='/profile/:pid' component={getParameterizedComponent} /><AsyncRoute path='/' component={getComponent} /></Router>, containerTag);
+		route('/profile/Prateek');
+		route('/');
+		setTimeout(()=>{
+			expect(containerTag.innerHTML).equal('<h1>hi</h1>');
+			done();
+		},400);
+	});
 });

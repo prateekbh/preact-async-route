@@ -19,11 +19,15 @@ class AsyncRoute extends Component {
 
 		// In case returned value was a promise
 		if (componentData && componentData.then) {
-			componentData.then(component => {
-				this.setState({
-					componentData: component
+			((url)=>{
+				componentData.then(component => {
+					if (url === this.props.url) {
+						this.setState({
+							componentData: component
+						});
+					}
 				});
-			});
+			})(this.props.url);
 		}
 	}
 	componentDidMount(){

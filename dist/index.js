@@ -40,11 +40,15 @@ var AsyncRoute = function (_Component) {
 
 		// In case returned value was a promise
 		if (componentData && componentData.then) {
-			componentData.then(function (component) {
-				_this2.setState({
-					componentData: component
+			(function (url) {
+				componentData.then(function (component) {
+					if (url === _this2.props.url) {
+						_this2.setState({
+							componentData: component
+						});
+					}
 				});
-			});
+			})(this.props.url);
 		}
 	};
 
