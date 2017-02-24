@@ -78,6 +78,23 @@ describe('Async Route', () => {
 		});
 	});
 
+	it('should get all props', () => {
+		let containerTag = document.createElement('div');
+		class PropsTag extends Component {
+			render(){
+				return (<h1>hi - {this.props.matches.pid} - {this.props.sequence}</h1>);
+			}
+		}
+		let getComponent = function(url, cb) {
+			cb({component: PropsTag});
+		};
+		render(<Router><AsyncRoute path='/profile/:pid' sequence="1" component={getComponent} /></Router>, containerTag);
+		route('/profile/Prateek');
+		expect(containerTag.innerHTML).equal('<h1>hi - Prateek - 1</h1>');
+		route('/profile/Jason');
+		expect(containerTag.innerHTML).equal('<h1>hi - Jason - 1</h1>');
+	});
+
 	it('should update on url change for same component', () => {
 		let containerTag = document.createElement('div');
 		let getComponent = function(url, cb) {

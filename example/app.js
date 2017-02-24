@@ -12,14 +12,18 @@ function getProfile() {
 }
 
 function getTerms() {
-	return System.import('./components/Terms').then(module => module.default);
+	return new Promise(resolve=>{
+		setTimeout(()=>{
+			System.import('./components/Terms').then(module => {resolve(module.default);});
+		},2000);
+	});
 }
 
 render(
 	<Router>
 		<Route path='/' component={Home}/>
-		<AsyncRoute path='/profile/:pid' component={getProfile} loading={()=><span>loading...</span>}/>
-		<AsyncRoute path='/terms' component={getTerms}/>
+		<AsyncRoute path='/profile/:pid' component={getProfile} />
+		<AsyncRoute path='/terms' component={getTerms} loading={()=>{return (<span>loading2...</span>);}}/>
 	</Router>,
 	document.getElementById('app')
 );

@@ -67,12 +67,11 @@ var AsyncRoute = function (_Component) {
 	AsyncRoute.prototype.render = function render() {
 
 		if (this.state.componentData) {
-			return preact.h(this.state.componentData, { url: this.props.url, matches: this.props.matches });
+			return preact.h(this.state.componentData, this.props);
 		} else if (this.props.loading) {
 			var loadingComponent = this.props.loading();
 			return loadingComponent;
 		}
-
 		return null;
 	};
 

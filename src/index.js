@@ -41,12 +41,11 @@ class AsyncRoute extends Component {
 	render(){
 
 		if (this.state.componentData) {
-			return h(this.state.componentData, { url: this.props.url, matches: this.props.matches });
+			return h(this.state.componentData, this.props);
 		} else if (this.props.loading) {
 			const loadingComponent = this.props.loading();
 			return loadingComponent;
 		}
-
 		return null;
 	}
 }

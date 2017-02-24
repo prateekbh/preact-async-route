@@ -635,157 +635,6 @@
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _preact = __webpack_require__(0);
-
-var _preactRouter = __webpack_require__(3);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Home = function (_Component) {
-	_inherits(Home, _Component);
-
-	function Home() {
-		_classCallCheck(this, Home);
-
-		return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
-	}
-
-	_createClass(Home, [{
-		key: 'render',
-		value: function render() {
-			return (0, _preact.h)(
-				'h1',
-				null,
-				'This is home page',
-				(0, _preact.h)(
-					_preactRouter.Link,
-					{ href: '/profile/prateek' },
-					'Prateek'
-				)
-			);
-		}
-	}]);
-
-	return Home;
-}(_preact.Component);
-
-exports.default = Home;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _preact = __webpack_require__(6);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var AsyncRoute = function (_Component) {
-	_inherits(AsyncRoute, _Component);
-
-	function AsyncRoute() {
-		_classCallCheck(this, AsyncRoute);
-
-		var _this = _possibleConstructorReturn(this, (AsyncRoute.__proto__ || Object.getPrototypeOf(AsyncRoute)).call(this));
-
-		_this.state = {
-			componentData: null
-		};
-		return _this;
-	}
-
-	_createClass(AsyncRoute, [{
-		key: 'loadComponent',
-		value: function loadComponent() {
-			var _this2 = this;
-
-			var componentData = this.props.component(this.props.url, function (_ref) {
-				var component = _ref.component;
-
-				// Named param for making callback future proof
-				if (component) {
-					_this2.setState({
-						componentData: component
-					});
-				}
-			});
-
-			// In case returned value was a promise
-			if (componentData && componentData.then) {
-				componentData.then(function (component) {
-					_this2.setState({
-						componentData: component
-					});
-				});
-			}
-		}
-	}, {
-		key: 'componentDidMount',
-		value: function componentDidMount() {
-			this.loadComponent();
-		}
-	}, {
-		key: 'componentWillReceiveProps',
-		value: function componentWillReceiveProps(nextProps) {
-			var _this3 = this;
-
-			if (this.props.url && this.props.url !== nextProps.url) {
-				this.setState({
-					componentData: null
-				}, function () {
-					_this3.loadComponent();
-				});
-			}
-		}
-	}, {
-		key: 'render',
-		value: function render() {
-
-			if (this.state.componentData) {
-				return (0, _preact.h)(this.state.componentData, { url: this.props.url, matches: this.props.matches });
-			} else if (this.props.loading) {
-				var loadingComponent = this.props.loading();
-				return loadingComponent;
-			}
-
-			return null;
-		}
-	}]);
-
-	return AsyncRoute;
-}(_preact.Component);
-
-exports.default = AsyncRoute;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
 (function (global, factory) {
 	 true ? module.exports = factory(__webpack_require__(0)) :
 	typeof define === 'function' && define.amd ? define(['preact'], factory) :
@@ -1147,6 +996,157 @@ return Router;
 })));
 //# sourceMappingURL=preact-router.js.map
 
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _preact = __webpack_require__(0);
+
+var _preactRouter = __webpack_require__(1);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Home = function (_Component) {
+	_inherits(Home, _Component);
+
+	function Home() {
+		_classCallCheck(this, Home);
+
+		return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
+	}
+
+	_createClass(Home, [{
+		key: 'render',
+		value: function render() {
+			return (0, _preact.h)(
+				'h1',
+				null,
+				'This is home page',
+				(0, _preact.h)(
+					_preactRouter.Link,
+					{ href: '/profile/prateek' },
+					'Prateek'
+				)
+			);
+		}
+	}]);
+
+	return Home;
+}(_preact.Component);
+
+exports.default = Home;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _preact = __webpack_require__(6);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AsyncRoute = function (_Component) {
+	_inherits(AsyncRoute, _Component);
+
+	function AsyncRoute() {
+		_classCallCheck(this, AsyncRoute);
+
+		var _this = _possibleConstructorReturn(this, (AsyncRoute.__proto__ || Object.getPrototypeOf(AsyncRoute)).call(this));
+
+		_this.state = {
+			componentData: null
+		};
+		return _this;
+	}
+
+	_createClass(AsyncRoute, [{
+		key: 'loadComponent',
+		value: function loadComponent() {
+			var _this2 = this;
+
+			var componentData = this.props.component(this.props.url, function (_ref) {
+				var component = _ref.component;
+
+				// Named param for making callback future proof
+				if (component) {
+					_this2.setState({
+						componentData: component
+					});
+				}
+			});
+
+			// In case returned value was a promise
+			if (componentData && componentData.then) {
+				componentData.then(function (component) {
+					_this2.setState({
+						componentData: component
+					});
+				});
+			}
+		}
+	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			this.loadComponent();
+		}
+	}, {
+		key: 'componentWillReceiveProps',
+		value: function componentWillReceiveProps(nextProps) {
+			var _this3 = this;
+
+			if (this.props.url && this.props.url !== nextProps.url) {
+				this.setState({
+					componentData: null
+				}, function () {
+					_this3.loadComponent();
+				});
+			}
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+
+			if (this.state.componentData) {
+				return (0, _preact.h)(this.state.componentData, { url: this.props.url, matches: this.props.matches });
+			} else if (this.props.loading) {
+				var loadingComponent = this.props.loading();
+				return loadingComponent;
+			}
+
+			return null;
+		}
+	}]);
+
+	return AsyncRoute;
+}(_preact.Component);
+
+exports.default = AsyncRoute;
 
 /***/ }),
 /* 4 */,
@@ -1650,13 +1650,13 @@ return Router;
 
 var _preact = __webpack_require__(0);
 
-var _preactRouter = __webpack_require__(3);
+var _preactRouter = __webpack_require__(1);
 
-var _src = __webpack_require__(2);
+var _src = __webpack_require__(3);
 
 var _src2 = _interopRequireDefault(_src);
 
-var _Home = __webpack_require__(1);
+var _Home = __webpack_require__(2);
 
 var _Home2 = _interopRequireDefault(_Home);
 
@@ -1673,8 +1673,12 @@ function getProfile() {
 }
 
 function getTerms() {
-	return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 5)).then(function (module) {
-		return module.default;
+	return new Promise(function (resolve) {
+		setTimeout(function () {
+			__webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 5)).then(function (module) {
+				resolve(module.default);
+			});
+		}, 2000);
 	});
 }
 
@@ -1682,14 +1686,14 @@ function getTerms() {
 	_preactRouter.Router,
 	null,
 	(0, _preact.h)(_preactRouter.Route, { path: '/', component: _Home2.default }),
-	(0, _preact.h)(_src2.default, { path: '/profile/:pid', component: getProfile, loading: function loading() {
+	(0, _preact.h)(_src2.default, { path: '/profile/:pid', component: getProfile }),
+	(0, _preact.h)(_src2.default, { path: '/terms', component: getTerms, loading: function loading() {
 			return (0, _preact.h)(
 				'span',
 				null,
-				'loading...'
+				'loading2...'
 			);
-		} }),
-	(0, _preact.h)(_src2.default, { path: '/terms', component: getTerms })
+		} })
 ), document.getElementById('app'));
 
 /***/ })
