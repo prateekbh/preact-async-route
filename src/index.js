@@ -19,6 +19,8 @@ class AsyncRoute extends Component {
 
 		// In case returned value was a promise
 		if (componentData && componentData.then) {
+			// IIFE to check if a later ending promise was creating a race condition
+			// Check test case for more info
 			((url)=>{
 				componentData.then(component => {
 					if (url === this.props.url) {
