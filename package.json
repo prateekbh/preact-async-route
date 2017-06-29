@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "Async route component for preact-router",
   "main": "dist/index.js",
+  "jsnext:main": "src/index.js",
   "scripts": {
     "clean": "rm -rf dist/*",
     "build": "npm-run-all clean transpile",
