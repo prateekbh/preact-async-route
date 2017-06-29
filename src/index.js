@@ -8,8 +8,13 @@ class AsyncRoute extends Component {
 		};
 	}
 	loadComponent(){
-		const componentData = this.props.component(this.props.url, ({component}) => {
-            // Named param for making callback future proof
+		if (this.props.component) {
+			return this.setState({
+				componentData: this.props.component
+			});
+		}
+		const componentData = this.props.getComponent(this.props.url, ({component}) => {
+      // Named param for making callback future proof
 			if (component) {
 				this.setState({
 					componentData: component

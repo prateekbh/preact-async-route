@@ -25,18 +25,12 @@ preact-async-route provides `<AsyncRoute> ` tag to load your components lazily.
   	return System.import('../component/Profile/Profile.jsx').then(module => module.default);
   }
 
-  function getFriendsComponent(url, cb){
-  	System.import('../component/Profile/Profile.jsx').then(module => {
-  		cb(null, module.default);
-  	});
-  }
-
   const Main = () => (
   	<Router>
   		<Home path="/" />
   		<Terms path="/terms" />
-  		<AsyncRoute path="/profile/:userid" component={getProfile} />
-  		<AsyncRoute path="/friends/:userid" component={getFriendsComponent}
+  		<AsyncRoute path="/profile/:userid" component={Home} />
+  		<AsyncRoute path="/friends/:userid" component={getProfile}
             loading={()=>{return <Loading/>}} />
   	</Router>
   );

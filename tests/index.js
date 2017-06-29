@@ -19,7 +19,7 @@ describe('Async Route', () => {
 
 	it('should call the given function on mount', () => {
 		let getComponent = sinon.spy();
-		render(<AsyncRoute component={getComponent} />, document.createElement('div'));
+		render(<AsyncRoute getComponent={getComponent} />, document.createElement('div'));
 		expect(getComponent).called;
 	});
 
@@ -28,7 +28,7 @@ describe('Async Route', () => {
 		let getComponent = function(url, cb) {
 			cb({component: SampleTag});
 		};
-		render(<AsyncRoute component={getComponent} />, containerTag);
+		render(<AsyncRoute getComponent={getComponent} />, containerTag);
 		expect(containerTag.innerHTML).equal('<h1>hi</h1>');
 	});
 
@@ -45,7 +45,7 @@ describe('Async Route', () => {
 			return componentPromise;
 		};
 
-		render(<AsyncRoute component={getComponent} />, containerTag);
+		render(<AsyncRoute getComponent={getComponent} />, containerTag);
 
 		componentPromise.then(()=>{
 			const endTime = Date.now();
@@ -67,7 +67,7 @@ describe('Async Route', () => {
 			return componentPromise;
 		};
 
-		render(<AsyncRoute loading={() => <span>loading...</span>} component={getComponent} />, containerTag);
+		render(<AsyncRoute loading={() => <span>loading...</span>} getComponent={getComponent} />, containerTag);
 
 		expect(containerTag.innerHTML).equal('<span>loading...</span>');
 
@@ -88,7 +88,7 @@ describe('Async Route', () => {
 		let getComponent = function(url, cb) {
 			cb({component: PropsTag});
 		};
-		render(<Router><AsyncRoute path='/profile/:pid' sequence="1" component={getComponent} /></Router>, containerTag);
+		render(<Router><AsyncRoute path='/profile/:pid' sequence="1" getComponent={getComponent} /></Router>, containerTag);
 		route('/profile/Prateek');
 		expect(containerTag.innerHTML).equal('<h1>hi - Prateek - 1</h1>');
 		route('/profile/Jason');
@@ -100,7 +100,7 @@ describe('Async Route', () => {
 		let getComponent = function(url, cb) {
 			cb({component: ParameterizedSampleTag});
 		};
-		render(<Router><AsyncRoute path='/profile/:pid' component={getComponent} /></Router>, containerTag);
+		render(<Router><AsyncRoute path='/profile/:pid' getComponent={getComponent} /></Router>, containerTag);
 		route('/profile/Prateek');
 		expect(containerTag.innerHTML).equal('<h1>hi - Prateek</h1>');
 		route('/profile/Jason');
@@ -123,7 +123,7 @@ describe('Async Route', () => {
 				},1);
 			});
 		};
-		render(<Router><AsyncRoute path='/profile/:pid' component={getParameterizedComponent} /><AsyncRoute path='/' component={getComponent} /></Router>, containerTag);
+		render(<Router><AsyncRoute path='/profile/:pid' getComponent={getParameterizedComponent} /><AsyncRoute path='/' getComponent={getComponent} /></Router>, containerTag);
 		route('/profile/Prateek');
 		route('/');
 		setTimeout(()=>{

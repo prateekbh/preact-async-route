@@ -27,7 +27,12 @@ var AsyncRoute = function (_Component) {
 	AsyncRoute.prototype.loadComponent = function loadComponent() {
 		var _this2 = this;
 
-		var componentData = this.props.component(this.props.url, function (_ref) {
+		if (this.props.component) {
+			return this.setState({
+				componentData: this.props.component
+			});
+		}
+		var componentData = this.props.getComponent(this.props.url, function (_ref) {
 			var component = _ref.component;
 
 			// Named param for making callback future proof
@@ -40,6 +45,8 @@ var AsyncRoute = function (_Component) {
 
 		// In case returned value was a promise
 		if (componentData && componentData.then) {
+			// IIFE to check if a later ending promise was creating a race condition
+			// Check test case for more info
 			(function (url) {
 				componentData.then(function (component) {
 					if (url === _this2.props.url) {
