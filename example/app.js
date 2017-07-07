@@ -22,8 +22,8 @@ function getTerms() {
 render(
 	<Router>
 		<Route path='/' component={Home}/>
-		<AsyncRoute path='/profile/:pid' component={getProfile} />
-		<AsyncRoute path='/terms' component={getTerms} loading={()=>{return (<span>loading2...</span>);}}/>
+		<AsyncRoute path='/profile/:pid' getComponent={getProfile} />
+		<AsyncRoute path='/terms' getComponent={getTerms} loading={()=>{return (<span>loading2...</span>);}}/>
 	</Router>,
 	document.getElementById('app')
 );

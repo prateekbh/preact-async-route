@@ -1090,7 +1090,12 @@ var AsyncRoute = function (_Component) {
 		value: function loadComponent() {
 			var _this2 = this;
 
-			var componentData = this.props.component(this.props.url, function (_ref) {
+			if (this.props.component) {
+				return this.setState({
+					componentData: this.props.component
+				});
+			}
+			var componentData = this.props.getComponent(this.props.url, function (_ref) {
 				var component = _ref.component;
 
 				// Named param for making callback future proof
@@ -1103,11 +1108,17 @@ var AsyncRoute = function (_Component) {
 
 			// In case returned value was a promise
 			if (componentData && componentData.then) {
-				componentData.then(function (component) {
-					_this2.setState({
-						componentData: component
+				// IIFE to check if a later ending promise was creating a race condition
+				// Check test case for more info
+				(function (url) {
+					componentData.then(function (component) {
+						if (url === _this2.props.url) {
+							_this2.setState({
+								componentData: component
+							});
+						}
 					});
-				});
+				})(this.props.url);
 			}
 		}
 	}, {
@@ -1133,12 +1144,11 @@ var AsyncRoute = function (_Component) {
 		value: function render() {
 
 			if (this.state.componentData) {
-				return (0, _preact.h)(this.state.componentData, { url: this.props.url, matches: this.props.matches });
+				return (0, _preact.h)(this.state.componentData, this.props);
 			} else if (this.props.loading) {
 				var loadingComponent = this.props.loading();
 				return loadingComponent;
 			}
-
 			return null;
 		}
 	}]);
@@ -1686,8 +1696,8 @@ function getTerms() {
 	_preactRouter.Router,
 	null,
 	(0, _preact.h)(_preactRouter.Route, { path: '/', component: _Home2.default }),
-	(0, _preact.h)(_src2.default, { path: '/profile/:pid', component: getProfile }),
-	(0, _preact.h)(_src2.default, { path: '/terms', component: getTerms, loading: function loading() {
+	(0, _preact.h)(_src2.default, { path: '/profile/:pid', getComponent: getProfile }),
+	(0, _preact.h)(_src2.default, { path: '/terms', getComponent: getTerms, loading: function loading() {
 			return (0, _preact.h)(
 				'span',
 				null,
