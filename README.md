@@ -11,6 +11,16 @@ preact-async-route provides `<AsyncRoute> ` tag to load your components lazily.
 
 `<AsyncRoute> `  also has a loading props, to which you can pass a component to be shown while the component is being lazily loaded.
 
+## Version 2.0
+Version 2.0 brings support for a new prop `component`
+in order to make usage of already imported components now preact-async-route will support 2 props
+
+1. `component` this will just take the JSX component itself and NOT the function
+2. for function calls `getComponent` is the prop
+
+check README :point_down:
+
+
 ## Usage Example
 ```js
   import { h, render } from 'preact';
