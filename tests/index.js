@@ -131,4 +131,22 @@ describe('Async Route', () => {
 			done();
 		},400);
 	});
+
+	it('should pass matches to getComponent', () => {
+		let containerTag = document.createElement('div');
+		let controlMatch = Math.random().toString();
+		let controlProp = Math.random();
+		let recivedMatch;
+		let recivedProp;
+
+		let getComponent = function(url, cb, props) {
+			recivedMatch = props.pid;
+			recivedProp = props.sequence;
+			cb({component: props => null});
+		};
+		render(<Router><AsyncRoute path='/profile/:pid' sequence={controlProp} getComponent={getComponent} /></Router>, containerTag);
+		route('/profile/' + controlMatch);
+		expect(recivedMatch).equal(controlMatch);
+		expect(recivedProp).equal(recivedProp);
+	})
 });
