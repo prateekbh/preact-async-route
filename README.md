@@ -31,7 +31,13 @@ check README :point_down:
   import Loading from './Components/Loading/Loading.jsx';
   /** @jsx h */
 
-  function getProfile(){
+  /**
+    arguments passed to getComponent:
+      url -- matched url
+      cb  -- in case you are not returning a promise
+      props -- props that component will recive upon being loaded
+  */
+  function getProfile(url, cb, props){
   	return System.import('../component/Profile/Profile.jsx').then(module => module.default);
   }
 

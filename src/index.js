@@ -20,7 +20,7 @@ class AsyncRoute extends Component {
 					componentData: component
 				});
 			}
-		});
+		}, Object.assign({}, this.props, this.props.matches));
 
 		// In case returned value was a promise
 		if (componentData && componentData.then) {
