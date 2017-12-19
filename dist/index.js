@@ -4,6 +4,8 @@
 	(global['preact-async-route'] = factory(global.preact));
 }(this, (function (preact) { 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -41,7 +43,7 @@ var AsyncRoute = function (_Component) {
 					componentData: component
 				});
 			}
-		});
+		}, _extends({}, this.props, this.props.matches));
 
 		// In case returned value was a promise
 		if (componentData && componentData.then) {
@@ -49,11 +51,15 @@ var AsyncRoute = function (_Component) {
 			// Check test case for more info
 			(function (url) {
 				componentData.then(function (component) {
-					if (url === _this2.props.url) {
-						_this2.setState({
-							componentData: component
+					if (url !== _this2.props.url) {
+						_this2.setState({ componentData: null }, function () {
+							_this2.loadComponent();
 						});
+						return;
 					}
+					_this2.setState({
+						componentData: component
+					});
 				});
 			})(this.props.url);
 		}
@@ -63,20 +69,7 @@ var AsyncRoute = function (_Component) {
 		this.loadComponent();
 	};
 
-	AsyncRoute.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
-		var _this3 = this;
-
-		if (this.props.url && this.props.url !== nextProps.url) {
-			this.setState({
-				componentData: null
-			}, function () {
-				_this3.loadComponent();
-			});
-		}
-	};
-
 	AsyncRoute.prototype.render = function render() {
-
 		if (this.state.componentData) {
 			return preact.h(this.state.componentData, this.props);
 		} else if (this.props.loading) {

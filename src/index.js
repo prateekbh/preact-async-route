@@ -28,11 +28,15 @@ class AsyncRoute extends Component {
 			// Check test case for more info
 			((url)=>{
 				componentData.then(component => {
-					if (url === this.props.url) {
-						this.setState({
-							componentData: component
+					if (url !== this.props.url) {
+						this.setState({componentData: null}, () => {
+							this.loadComponent();
 						});
+						return;
 					}
+					this.setState({
+						componentData: component
+					});
 				});
 			})(this.props.url);
 		}
@@ -40,17 +44,7 @@ class AsyncRoute extends Component {
 	componentDidMount(){
 		this.loadComponent();
 	}
-	componentWillReceiveProps(nextProps){
-		if (this.props.url && this.props.url !== nextProps.url) {
-			this.setState({
-				componentData: null
-			}, ()=>{
-				this.loadComponent();
-			});
-		}
-	}
 	render(){
-
 		if (this.state.componentData) {
 			return h(this.state.componentData, this.props);
 		} else if (this.props.loading) {
