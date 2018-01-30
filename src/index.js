@@ -14,7 +14,7 @@ class AsyncRoute extends Component {
 			});
 		}
 		const componentData = this.props.getComponent(this.props.url, ({component}) => {
-      // Named param for making callback future proof
+			// Named param for making callback future proof
 			if (component) {
 				this.setState({
 					componentData: component
@@ -39,6 +39,15 @@ class AsyncRoute extends Component {
 					});
 				});
 			})(this.props.url);
+		}
+	}
+	componentWillReceiveProps(nextProps){
+		if (this.props.path && this.props.path !== nextProps.path) {
+			this.setState({
+				componentData: null
+			}, ()=>{
+				this.loadComponent();
+			});
 		}
 	}
 	componentDidMount(){
