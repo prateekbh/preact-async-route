@@ -50,7 +50,7 @@ class AsyncRoute extends Component {
 			});
 		}
 	}
-	componentDidMount(){
+	componentWillMount(){
 		this.loadComponent();
 	}
 	render(){
