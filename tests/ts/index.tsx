@@ -7,12 +7,17 @@ import AsyncRoute from '../../';
  * type issues via the TypeScript compiler.
  */
 
+function componentFetcher(url: string, cb: (c: any) => void, props: any): Promise<any> | void {}
+function loadingAnimation(): JSX.Element | any {
+    return <div></div>;
+}
+
 export class Index extends Component<{}, {}> {
     public render(): JSX.Element {
         return <Router>
-            <AsyncRoute path="/" component={null} />
-            <AsyncRoute path="/" getComponent={null} />
-            <AsyncRoute path="/" getComponent={null} loading={null} />
+            <AsyncRoute path="/" component={Router} />
+            <AsyncRoute path="/" getComponent={componentFetcher} />
+            <AsyncRoute path="/" getComponent={componentFetcher} loading={loadingAnimation} />
         </Router>;
     }
 }
