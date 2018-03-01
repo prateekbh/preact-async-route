@@ -8,7 +8,7 @@ import AsyncRoute from '../../';
  */
 
 export class Index extends Component<{}, {}> {
-    public render(): preact.VNode {
+    public render(): JSX.Element {
         return <Router>
             <AsyncRoute path="/" component={null} />
             <AsyncRoute path="/" getComponent={null} />
