@@ -3,7 +3,7 @@
 
 Async route component for [preact-router](https://github.com/developit/preact-router)
 
-`npm i -D preact-async-route`
+`npm i -P preact-async-route`
 
 preact-async-route provides `<AsyncRoute> ` tag to load your components lazily.
 
