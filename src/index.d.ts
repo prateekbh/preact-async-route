@@ -1,6 +1,7 @@
 import { Component, FunctionalComponent } from 'preact';
 
 interface IAsyncRouteProps {
+    path: string;
     component?: any;
     getComponent?: (
         this: AsyncRoute,
