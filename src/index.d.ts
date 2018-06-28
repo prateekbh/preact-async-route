@@ -10,6 +10,7 @@ interface IAsyncRouteProps {
         props: any
     ) => Promise<any> | void;
     loading?: () => JSX.Element;
+    [key:string]: any;
 }
 
 export default class AsyncRoute extends Component<IAsyncRouteProps, {}> {

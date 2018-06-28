@@ -1,6 +1,6 @@
 {
   "name": "preact-async-route",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Async route component for preact-router",
   "main": "dist/index.js",
   "jsnext:main": "src/index.js",
