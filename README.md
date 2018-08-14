@@ -38,7 +38,7 @@ check README :point_down:
       props -- props that component will recive upon being loaded
   */
   function getProfile(url, cb, props){
-  	return System.import('../component/Profile/Profile.jsx').then(module => module.default);
+  	return import('../component/Profile/Profile.jsx').then(module => module.default);
   }
 
   const Main = () => (
