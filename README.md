@@ -1,5 +1,6 @@
 # preact-async-route
 [![build](https://api.travis-ci.org/prateekbh/preact-async-route.svg?branch=master)](https://api.travis-ci.org/prateekbh/preact-async-route.svg?branch=master)
+[![gzip size](http://img.badgesize.io/https://unpkg.com/preact-async-route/dist/index.min.js?compression=gzip)](https://unpkg.com/preact-async-route/dist/index.min.js)
 
 Async route component for [preact-router](https://github.com/developit/preact-router)
 
