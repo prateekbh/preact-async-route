@@ -1,5 +1,6 @@
 # preact-async-route
 [![build](https://api.travis-ci.org/prateekbh/preact-async-route.svg?branch=master)](https://api.travis-ci.org/prateekbh/preact-async-route.svg?branch=master)
+[![gzip size](http://img.badgesize.io/https://unpkg.com/preact-async-route/dist/index.min.js?compression=gzip)](https://unpkg.com/preact-async-route/dist/index.min.js)
 
 Async route component for [preact-router](https://github.com/developit/preact-router)
 
@@ -38,7 +39,7 @@ check README :point_down:
       props -- props that component will recive upon being loaded
   */
   function getProfile(url, cb, props){
-  	return System.import('../component/Profile/Profile.jsx').then(module => module.default);
+  	return import('../component/Profile/Profile.jsx').then(module => module.default);
   }
 
   const Main = () => (
