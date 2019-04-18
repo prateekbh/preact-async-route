@@ -1,4 +1,4 @@
-import { Component, FunctionalComponent } from 'preact';
+import { Component, FunctionalComponent, JSX } from 'preact';
 
 interface IAsyncRouteProps {
     path: string;
