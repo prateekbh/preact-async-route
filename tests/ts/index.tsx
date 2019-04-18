@@ -1,4 +1,4 @@
-import { h, render, Component } from 'preact';
+import { h, render, Component, JSX } from 'preact';
 import Router from 'preact-router';
 import AsyncRoute from '../../';
 
