@@ -45,15 +45,14 @@ class AsyncRoute extends Component {
 
 	componentWillReceiveProps(nextProps){
 		if (this.props.path && this.props.path !== nextProps.path) {
-			this.setState({
+			this.setState(() => ({
 				componentData: null
-			}, ()=>{
-				this.loadComponent();
-			});
+      }));
+      this.loadComponent();
 		}
   }
 
-	componentWillMount(){
+	componentDidMount(){
 		this.loadComponent();
   }
 
