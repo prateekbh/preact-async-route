@@ -6,7 +6,8 @@ class AsyncRoute extends Component {
 		this.state = {
 			componentData: null
 		};
-	}
+  }
+
 	loadComponent(){
 		if (this.props.component) {
 			return this.setState({
@@ -40,7 +41,8 @@ class AsyncRoute extends Component {
 				});
 			})(this.props.url);
 		}
-	}
+  }
+
 	componentWillReceiveProps(nextProps){
 		if (this.props.path && this.props.path !== nextProps.path) {
 			this.setState({
@@ -49,10 +51,12 @@ class AsyncRoute extends Component {
 				this.loadComponent();
 			});
 		}
-	}
+  }
+
 	componentWillMount(){
 		this.loadComponent();
-	}
+  }
+
 	render(){
 		if (this.state.componentData) {
 			return h(this.state.componentData, this.props);
