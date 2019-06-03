@@ -8,6 +8,7 @@ Prefer using the `Lazy` component along with `Suspense` instead of this package.
 
 This package is still useful for preact versions < 10
 
+--------------------
 
 Async route component for [preact-router](https://github.com/developit/preact-router)
 
