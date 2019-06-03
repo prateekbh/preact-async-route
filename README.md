@@ -2,6 +2,13 @@
 [![build](https://api.travis-ci.org/prateekbh/preact-async-route.svg?branch=master)](https://api.travis-ci.org/prateekbh/preact-async-route.svg?branch=master)
 [![gzip size](http://img.badgesize.io/https://unpkg.com/preact-async-route/dist/index.min.js?compression=gzip)](https://unpkg.com/preact-async-route/dist/index.min.js)
 
+## Deprecation notice
+`preact-x` supports `Lazy` component, which can be used as shown [here](https://reactjs.org/docs/code-splitting.html#reactlazy).
+Prefer using the `Lazy` component along with `Suspense` instead of this package.
+
+This package is still useful for preact versions < 10
+
+
 Async route component for [preact-router](https://github.com/developit/preact-router)
 
 `npm i -D preact-async-route`
