@@ -50,7 +50,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
-    "eslint": "^3.0.0",
+    "eslint": "^4.18.2",
     "eslint-plugin-react": "^6.10.0",
     "karma": "^1.0.0",
     "karma-chai-sinon": "^0.1.5",
