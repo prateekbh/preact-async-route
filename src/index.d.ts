@@ -1,4 +1,4 @@
-import { Component, FunctionalComponent } from 'preact';
+import { Component, h } from 'preact';
 
 interface IAsyncRouteProps {
     path: string;
@@ -9,10 +9,10 @@ interface IAsyncRouteProps {
         callback: (component: any) => void,
         props: any
     ) => Promise<any> | void;
-    loading?: () => JSX.Element;
+    loading?: () => h.JSX.Element;
     [key:string]: any;
 }
 
 export default class AsyncRoute extends Component<IAsyncRouteProps, {}> {
-    public render(): JSX.Element | null;
+    public render(): h.JSX.Element | null;
 }
