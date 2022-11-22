@@ -52,7 +52,7 @@
     "chai": "^3.5.0",
     "eslint": "^3.0.0",
     "eslint-plugin-react": "^6.10.0",
-    "karma": "^1.0.0",
+    "karma": "^6.4.1",
     "karma-chai-sinon": "^0.1.5",
     "karma-mocha": "^1.0.1",
     "karma-mocha-reporter": "^2.0.3",
